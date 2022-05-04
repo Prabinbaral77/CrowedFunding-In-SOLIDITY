@@ -24,30 +24,30 @@ contract CrowedFunding {
     uint public noOfRequests;
 
     // giving the default value in constructor for testing
-    uint targetValue = 10000;
-    uint deadlineValue = 36000;
-    mapping(address => uint) balances;
+    // uint targetValue = 10000;
+    // uint deadlineValue = 36000;
+    // mapping(address => uint) balances;
 
 
-    constructor() {
+    constructor(uint _deadline, uint _target) {
         manager = msg.sender;
-        deadline = block.timestamp + deadlineValue;
-        target = targetValue;
+        deadline = block.timestamp + _deadline;
+        target = _target;
         minContribution = 100 wei;
 
         //for suitable testcases
-        balances[msg.sender] = 100000 wei;
+        // balances[msg.sender] = 100000 wei;
     }
 
     //only for test case
-    function makeTransaction(address to, uint amount) external {
-        balances[to] += amount;
-        balances[msg.sender] -= amount;
-    }
+    // function makeTransaction(address to, uint amount) external {
+    //     balances[to] += amount;
+    //     balances[msg.sender] -= amount;
+    // }
 
-    function balanceOf(address account) external view returns(uint) {
-        return balances[account];
-    }
+    // function balanceOf(address account) external view returns(uint) {
+    //     return balances[account];
+    // }
 
     function sendEth() external payable {
         require(block.timestamp < deadline, "You cannot donate after deadline.");
