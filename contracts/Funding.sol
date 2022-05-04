@@ -10,6 +10,7 @@ contract CrowedFunding {
     uint public noOfContributer;
     uint public raisedAmount;
 
+
     struct Request {
         string description;
         address payable recipient;
@@ -22,10 +23,15 @@ contract CrowedFunding {
     mapping(uint => Request) public requests;
     uint public noOfRequests;
 
-    constructor(uint _target, uint _deadline) {
+    // giving the default value in constructor for testing
+    uint targetValue = 10000;
+    uint deadlineValue = 36000;
+
+
+    constructor() {
         manager = msg.sender;
-        deadline = block.timestamp + _deadline;
-        target = _target;
+        deadline = block.timestamp + deadlineValue;
+        target = targetValue;
         minContribution = 100 wei;
     }
 
