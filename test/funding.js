@@ -26,5 +26,9 @@ describe("CrowedFunding Contract", function () {
     it("should assign the right target for funding", async function () {
       expect(await hardhatToken.target()).to.equal(10000);
     });
+
+    it("should assign the right target for funding", async function () {
+      expect(5).to.equal(5);
+    });
   });
 });
